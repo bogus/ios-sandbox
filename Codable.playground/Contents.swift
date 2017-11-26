@@ -7,7 +7,7 @@ import PlaygroundSupport
 PlaygroundPage.current.needsIndefiniteExecution = true
 
 
-/// Test mapping with new Swift4 codable interface
+/// Test mapping with new Swift 4 codable interface
 
 
 struct Country : Codable {
