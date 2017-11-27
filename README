@@ -1,4 +1,4 @@
 iOS Sandbox
 
-- Codable Playground: Test mapping with new Swift4 codable interface and URLSession
-
+- Codable Playground: Test mapping with new Swift4 Codable interface and URLSession
+- Sandbox/GithubSearch: Sample Github repo search master-detail view with Alamofire, Coredata and Codable
