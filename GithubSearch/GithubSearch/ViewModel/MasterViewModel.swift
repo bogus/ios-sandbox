@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 protocol TableViewModelDelegate {
     func reload()
@@ -45,26 +46,21 @@ class MasterViewModel: NSObject, TableViewControllerDelegate {
     }
     
     func search(query:String?) {
-        guard let query = query,
-            let url = URL(string:"https://api.github.com/search/repositories?q=" + query) else { return }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
+        guard let query = query else { return }
+        Alamofire.request("https://api.github.com/search/repositories?q=" + query).response(queue: DispatchQueue.global(qos: .background)) { [weak self] response in
+            if let error = response.error {
                 print(error)
                 return
             }
-            
-            let decoder = JSONDecoder()
-            decoder.userInfo[CodingUserInfoKey.context!] = self.backgroundObjectContext
-            decoder.dateDecodingStrategy = .iso8601
-            guard let data = data else { return }
-            let repositoryRequest = try? decoder.decode(RepositoryRequest.self, from: data)
-            try? self.backgroundObjectContext?.save()
-            self.repositories = repositoryRequest?.items
+            guard let context = self?.backgroundObjectContext else { return }
+            guard let data = response.data else { return }
+            let repositoryRequest = try? ManagedJSONDecoder(context: context).decode(RepositoryRequest.self, from: data)
+            try? context.save()
+            self?.repositories = repositoryRequest?.items
             DispatchQueue.main.async {
-                self.delegate?.reload()
+                self?.delegate?.reload()
             }
         }
-        task.resume()
         repositories = [Repository]()
         delegate?.reload()
     }
