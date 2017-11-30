@@ -12,13 +12,13 @@ import CoreData
 protocol TableViewControllerDelegate {
     func item(at:IndexPath) -> TableCellViewModelDelegate?
     func numberOfRows(in:Int) -> Int
+    func search(query:String?)
 }
 
-class MasterViewController: UITableViewController, TableViewModelDelegate {
+class MasterViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
-    var viewModel:TableViewControllerDelegate? = nil
-    var persistentContainer:NSPersistentContainer? = nil
+    private var detailViewController: DetailViewController? = nil
+    private var viewModel:TableViewControllerDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,5 +75,21 @@ class MasterViewController: UITableViewController, TableViewModelDelegate {
         return true
     }
 
+}
+
+extension MasterViewController : TableViewModelDelegate {
+    
+    func reload() {
+        tableView.reloadData()
+    }
+    
+}
+
+extension MasterViewController : UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel?.search(query: searchBar.text)
+    }
+    
 }
 

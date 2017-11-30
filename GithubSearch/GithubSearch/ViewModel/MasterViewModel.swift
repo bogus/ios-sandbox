@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol TableViewModelDelegate {
-
+    func reload()
 }
 
 protocol TableCellViewModelDelegate {
@@ -31,23 +31,7 @@ class MasterViewModel: NSObject, TableViewControllerDelegate {
         super.init()
         managedObjectContext = AppDelegate.shared.persistentContainer.viewContext
         backgroundObjectContext = AppDelegate.shared.persistentContainer.newBackgroundContext()
-        self.delegate = delegate/*
-        if let url = URL(string:"https://api.github.com/search/repositories?q=android") {
-            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                
-                let decoder = JSONDecoder()
-                decoder.userInfo[CodingUserInfoKey.context!] = self.backgroundObjectContext
-                decoder.dateDecodingStrategy = .iso8601
-                guard let data = data else { return }
-                _ = try? decoder.decode(RepositoryRequest.self, from: data)
-                try? self.backgroundObjectContext?.save()
-            }
-            task.resume()
-        }*/
+        self.delegate = delegate
         repositories = self.loadCached()
     }
     
@@ -58,6 +42,31 @@ class MasterViewModel: NSObject, TableViewControllerDelegate {
     
     func numberOfRows(in: Int) -> Int {
         return repositories?.count ?? 0
+    }
+    
+    func search(query:String?) {
+        guard let query = query,
+            let url = URL(string:"https://api.github.com/search/repositories?q=" + query) else { return }
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.userInfo[CodingUserInfoKey.context!] = self.backgroundObjectContext
+            decoder.dateDecodingStrategy = .iso8601
+            guard let data = data else { return }
+            let repositoryRequest = try? decoder.decode(RepositoryRequest.self, from: data)
+            try? self.backgroundObjectContext?.save()
+            self.repositories = repositoryRequest?.items
+            DispatchQueue.main.async {
+                self.delegate?.reload()
+            }
+        }
+        task.resume()
+        repositories = [Repository]()
+        delegate?.reload()
     }
     
     func loadCached() -> [Repository] {
