@@ -22,6 +22,7 @@
 		673379EB1FCB96300012FAB3 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673379EA1FCB96300012FAB3 /* Repository.swift */; };
 		673379ED1FCB96440012FAB3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673379EC1FCB96440012FAB3 /* User.swift */; };
 		673379EF1FCB99200012FAB3 /* RepositoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673379EE1FCB99200012FAB3 /* RepositoryCellViewModel.swift */; };
+		6785A25B1FCFB2090093BCCE /* RepositoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6785A25A1FCFB2090093BCCE /* RepositoryRequest.swift */; };
 		99298094F21388559DE75D65 /* Pods_GithubSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175E0A390FBB00B01B045349 /* Pods_GithubSearch.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		673379EA1FCB96300012FAB3 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = Model/Repository.swift; sourceTree = "<group>"; };
 		673379EC1FCB96440012FAB3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		673379EE1FCB99200012FAB3 /* RepositoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCellViewModel.swift; sourceTree = "<group>"; };
+		6785A25A1FCFB2090093BCCE /* RepositoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRequest.swift; sourceTree = "<group>"; };
 		8F7B88A107C1A9F6FD734079 /* Pods-GithubSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubSearch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GithubSearch/Pods-GithubSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		B85B353AA0AA9E17B4DF61AF /* Pods-GithubSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubSearch.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubSearch/Pods-GithubSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +109,7 @@
 			children = (
 				673379EA1FCB96300012FAB3 /* Repository.swift */,
 				673379EC1FCB96440012FAB3 /* User.swift */,
+				6785A25A1FCFB2090093BCCE /* RepositoryRequest.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				670DCB401FCB8AAA007BBC6A /* MasterViewModel.swift in Sources */,
+				6785A25B1FCFB2090093BCCE /* RepositoryRequest.swift in Sources */,
 				672550AB1FCB883400A6617D /* GithubSearch.xcdatamodeld in Sources */,
 				672550A81FCB883400A6617D /* AppDelegate.swift in Sources */,
 				672550AD1FCB883400A6617D /* MasterViewController.swift in Sources */,

@@ -18,6 +18,7 @@ class MasterViewController: UITableViewController, TableViewModelDelegate {
 
     var detailViewController: DetailViewController? = nil
     var viewModel:TableViewControllerDelegate? = nil
+    var persistentContainer:NSPersistentContainer? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,8 @@ class MasterViewController: UITableViewController, TableViewModelDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = viewModel?.item(at: indexPath)?.getTitle() ?? ""
+        cell.detailTextLabel?.text = viewModel?.item(at: indexPath)?.getSubtitle() ?? ""
         return cell
     }
 
