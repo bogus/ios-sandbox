@@ -5,3 +5,4 @@ iOS Sandbox
 - CGRect Playground: Test CGRect functionality and CATransform and CGAffineTransform
 - Sandbox/GithubSearch: Sample Github repo search master-detail view with Alamofire, Coredata and Codable
 - DynamicDispatch Playground: Test dynamic dispatch, associatedtype and generics
+- GCD Playground: Test serial, concurrent queues and .barrier flag
