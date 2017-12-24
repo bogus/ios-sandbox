@@ -4,3 +4,4 @@ iOS Sandbox
 - Bezier Path Playground: Test arcs, lines and masks with UIBezierPath and CAShapeLayer
 - CGRect Playground: Test CGRect functionality and CATransform and CGAffineTransform
 - Sandbox/GithubSearch: Sample Github repo search master-detail view with Alamofire, Coredata and Codable
+- DynamicDispatch Playground: Test dynamic dispatch, associatedtype and generics
